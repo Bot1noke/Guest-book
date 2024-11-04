@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h2>Изменить тег</h2>
+    <form method="POST" action="/api/update_comment/{{comment_id}}">
+        <div>
+            <label for="articleTitle" class="form-label">Автор</label>
+            <input class="form-control" name="commentAuthor">
+        </div>
+        <div>
+            <label for="articleContent" class="form-label">Тег</label>
+            <textarea class="form-control" name="commentContent" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Изменить</button>
+    </form>
+</div>
+{% endblock %}

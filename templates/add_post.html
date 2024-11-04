@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h2>Добавить запись</h2>
+    <form method="POST" action="/api/add_post">
+        <div>
+            <label for="articleTitle" class="form-label">Автор</label>
+            <input class="form-control" name="articleTitle">
+        </div>
+        <div>
+            <label for="articleContent" class="form-label">Сообщение</label>
+            <textarea class="form-control" name="articleContent" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Запостить</button>
+    </form>
+</div>
+{% endblock %}

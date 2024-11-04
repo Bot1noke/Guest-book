@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+<div class="d-grid gap-3">
+    {% for article in articles %}
+    <div>
+        <h2>{{article.title}}</h2>
+        <p>{{article.content}}</p>
+
+        <button class="btn btn-dark" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseComments{{ article.id }}" aria-expanded="false"
+                aria-controls="collapseComments{{ article.id }}">
+            Теги
+        </button>
+        <a class="btn btn-dark" href="/update_post/{{ article.id }}" role="button">Редактировать сообщение</a>
+        <a class="btn btn-dark" href="/api/delete_post/{{ article.id }}" role="button">Удалить сообщение</a>
+        <div class="collapse" id="collapseComments{{ article.id }}">
+            <div class="pt-3"></div>
+            <h3>Затегать</h3>
+            <form method="POST" action="/api/add_comment/{{ article.id}}">
+                <div class="mb-3">
+                    <label for="commentContent" class="form-label">Тег</label>
+                    <input class="form-control" name="commentContent">
+                </div>
+                <div class="mb-3">
+                    <label for="commentAuthor" class="form-label">Автор</label>
+                    <input class="form-control" name="commentAuthor">
+                </div>
+                <button type="submit" class="btn btn-dark">Добавить</button>
+            </form>
+            <div class="pt-3"></div>
+            <h3>Теги</h3>
+            <ul class="list-group">
+                {% if article.comments | length < 1 %}
+                    <li class="list-group-item">Свободная територия</li>
+                {% endif %}
+                {% for comment in article.comments %}
+                <li class="list-group-item">
+                    <h4>{{ comment.author }}</h4>
+                    <p>{{ comment.content }}</p>
+                    <a class="btn btn-dark" href="/update_comment/{{ comment.id }}" role="button">Изменить тег</a>
+                    <a class="btn btn-dark" href="/api/delete_comment/{{ comment.id }}" role="button">Удалить тег</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+     {% endif %}
+{% endblock %}

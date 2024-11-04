@@ -1,0 +1,28 @@
+@font-face{
+
+font-family:'SourceSerif';
+src:url(../fonts/SourceSerif4/SourceSerif4-Regular.ttf) format('truetype')
+}
+h1{
+    font-family: SourceSerif;
+}
+h2
+{
+    font-family: SourceSerif;
+}
+h3
+{
+    font-family: SourceSerif;
+}
+p
+{
+    font-family: SourceSerif;
+}
+div
+{
+    font-family: SourceSerif;
+}
+a
+{
+    font-family: SourceSerif;
+}
